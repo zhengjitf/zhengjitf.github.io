@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import { css } from '@emotion/core'
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
@@ -15,22 +15,79 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title="All posts" />
-        <Bio />
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
+          const tags = (node.frontmatter.tag || '').split(',').filter(Boolean)
           return (
-            <article key={node.fields.slug}>
+            <article 
+              key={node.fields.slug}
+              css={css`
+                padding: 80px 0;
+                border-top: solid 1px #d9d9d9;
+                &:first-of-type {
+                  padding-top: 0;
+                  border: 0;
+                }
+              `}
+            >
               <header>
+                <div className="post-data">
+                  {
+                    tags.map(tag => {
+                      return (
+                        <Link 
+                          css={css`
+                            border-radius: 28px;
+                            background: #d0414e;
+                            border: 2px solid #d0414e;
+                            text-decoration: none!important;
+                            display: inline-block;
+                            padding: 0 15px;
+                            position: relative;
+                            overflow: hidden;
+                            vertical-align: middle;
+                            z-index: 5;
+                            color: #fff;
+                            text-transform: uppercase;
+                            font-size: 14px;
+                          `}
+                        >
+                          {tag}
+                        </Link>
+                      )
+                    })
+                  }
+                  <span
+                    css={css`
+                      margin-left: 20px;
+                      color: #a9afb3;
+                      font-size: 16px;
+                    `}
+                  >
+                    {node.frontmatter.date}
+                  </span>
+                </div>
                 <h3
                   style={{
-                    marginBottom: rhythm(1 / 4),
+                    margin: '20px 0',
                   }}
                 >
-                  <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+                  <Link 
+                    css={css`
+                      font-size: 42px;
+                      line-height: 1.33;
+                      letter-spacing: -.5px;
+                      margin: 20px 0;
+                      cursor: pointer;
+                      color: #25333e;
+                      text-decoration: none;
+                      box-shadow: none;
+                    `} 
+                    to={node.fields.slug}
+                  >
                     {title}
                   </Link>
                 </h3>
-                <small>{node.frontmatter.date}</small>
               </header>
               <section>
                 <p
@@ -67,6 +124,7 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             description
+            tag
           }
         }
       }
