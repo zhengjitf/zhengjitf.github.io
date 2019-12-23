@@ -12,13 +12,19 @@ class BlogPostTemplate extends React.Component {
     const { previous, next } = this.props.pageContext
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout 
+        location={this.props.location} 
+        title={siteTitle}
+        pageData={{
+          post,
+        }}
+      >
         <SEO
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
         <article className="post-container">
-          <header>
+          {/* <header>
             <h1
               style={{
                 marginTop: rhythm(1),
@@ -36,7 +42,7 @@ class BlogPostTemplate extends React.Component {
             >
               {post.frontmatter.date}
             </p>
-          </header>
+          </header> */}
           <section dangerouslySetInnerHTML={{ __html: post.html }} />
           <hr
             style={{
@@ -95,6 +101,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        tag
       }
     }
   }

@@ -5,6 +5,7 @@ module.exports = {
     description: ``,
     siteUrl: `https://blog.zhengjitf.com/`,
     social: {
+      codepen: `http://codepen.io/zhengjitf`,
       github: `https://github.com/zhengjitf`,
     },
   },
