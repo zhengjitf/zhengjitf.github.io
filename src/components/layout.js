@@ -2,6 +2,8 @@ import React from "react"
 import { Link } from "gatsby"
 import { Global, css } from '@emotion/core'
 
+import globalCss from '../styles/global'
+import { mq } from '../styles/mq'
 import { rhythm, scale } from "../utils/typography"
 import Header from './header'
 import Aside from './aside'
@@ -17,75 +19,8 @@ class Layout extends React.Component {
       <div
       >
         <Global
-          styles={css`
-            body {
-              font-family: Lora,sans-serif;
-              font-size: 20px;
-              color: #25333e;
-            }
-            img {
-              margin: 0;
-            }
-            ul, li {
-              list-style: none;
-            }
-            a, h1, h2, h3, h4, h5, h6 {
-              font-family: Montserrat,sans-serif;
-            }
-            a {
-              box-shadow: none;
-              color: inherit;
-            }
-            h1, h2, h3, h4, h5, h6 {
-              font-weight: 600;
-            }
-            h4 {
-              font-size: 24px;
-              letter-spacing: -.3px;
-            }
-            .container {
-              margin: auto;
-              padding: 0 15px;
-
-              &:before, &:after {
-                content: '';
-                display: table;
-              }
-              &:after {
-                clear: both;
-              }
-  
-              @media (min-width: 768px) {
-                width: 750px;
-              }
-              @media (min-width: 992px) {
-                width: 970px;
-              }
-              @media (min-width: 1200px) {
-                width: 1170px;
-              }
-            }
-
-            blockquote {
-              line-height: 1.6;
-              font-style: italic;
-              border-color: #d0414e;
-              color: inherit;
-            }
-
-            .post-container {
-              a {
-                color: #d0414e;
-                font-family: Lora,sans-serif;
-                position: relative;
-                text-decoration: none;
-                white-space: nowrap;
-              }
-            }
-          `}
-        >
-          
-        </Global>
+          styles={globalCss}
+        />
         <header>
           <Header location={location} pageData={pageData} />
         </header>
@@ -97,6 +32,9 @@ class Layout extends React.Component {
             isRootPath && (
               <aside
                 css={css`
+                  ${mq({
+                    display: ['none', 'block'],
+                  })}
                   float: left;
                   width: 230px;
                 `}
@@ -107,11 +45,13 @@ class Layout extends React.Component {
           }
           <main
             css={css`
+              ${mq({
+                padding: ['0 20px', isRootPath ? '70px' : 0],
+                'border-left': [0, isRootPath ? '1px solid #d9d9d9' : 0],
+                width: ['100%', isRootPath ? 'calc(100% - 230px)' : '770px'],
+              })}
               float: ${isRootPath ? 'left' : 'none'};
-              padding-left: ${isRootPath ? '70px' : 0};
-              width: ${isRootPath ? 'calc(100% - 230px)' : '770px'};
               max-width: 100%;
-              border-left: ${isRootPath ? '1px solid #d9d9d9' : 0};
               margin: 0 auto;
             `}
           >

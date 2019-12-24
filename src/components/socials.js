@@ -1,6 +1,7 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled from '@emotion/styled'
+import { css } from '@emotion/core'
 
 const A = styled.a`
   display: flex;
@@ -16,7 +17,7 @@ const A = styled.a`
   }
 `
 
-export default ({data}) => {
+export default (props) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -33,9 +34,14 @@ export default ({data}) => {
   )
 
   const social = site.siteMetadata.social
-
+  console.log('props.css', props)
   return (
-    <div style={{ display: 'flex' }}>
+    <div 
+      css={css`
+        display: flex;
+      `}
+      {...props}
+    >
       <A 
         href={social.github}
         target="_blank"

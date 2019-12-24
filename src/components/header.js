@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import { css } from '@emotion/core'
 
+import { mq } from '../styles/mq'
 import Socials from './socials'
 
 export default (props) => {
@@ -145,7 +146,10 @@ export default (props) => {
               css={css`
                 position: absolute;
                 top: 50%;
-                transform: translate(0, -50%);
+                ${mq({
+                  left: ['50%', 0],
+                  transform: ['translate(-50%, -50%)', 'translate(0, -50%)'],
+                })}
               `}
             >
               <h1
@@ -158,7 +162,13 @@ export default (props) => {
                 <Link to="/">{author}</Link>
               </h1>
               <div style={{marginTop: 20}}>
-                <Socials></Socials>
+                <Socials
+                  css={css`
+                    ${mq({
+                      'justify-content': ['center', 'normal'],
+                    })}
+                  `}
+                />
               </div>
             </div>
           )

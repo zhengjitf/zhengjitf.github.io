@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import { css } from '@emotion/core'
 
 import Socials from '../components/socials'
+import { mq } from '../styles/mq'
 
 export default () => {
   return (
@@ -18,9 +19,14 @@ export default () => {
             float: left;
             color: #fff;
             font-size: 16px;
-            a {
-              margin-right: 30px;
+            a + a {
+              margin-left: 30px;
             }
+            ${mq({
+              width: ['100%', 'auto'],
+              'text-align': ['center', 'inherit'],
+              'margin-bottom': ['10px', 0],
+            })}
           `}
         >
           <Link>Blog</Link>
@@ -29,9 +35,15 @@ export default () => {
         <div
           css={css`
             float: right;
+            ${mq({
+              width: ['100%', 'auto'],
+            })}
           `}
         >
-          <Socials></Socials>
+          <Socials
+            css={css`
+              justify-content: center;
+            `}/>
         </div>
       </div>
     </div>

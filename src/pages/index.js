@@ -18,6 +18,7 @@ class BlogIndex extends React.Component {
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           const tags = (node.frontmatter.tag || '').split(',').filter(Boolean)
+
           return (
             <article 
               key={node.fields.slug}
@@ -83,7 +84,7 @@ class BlogIndex extends React.Component {
                       text-decoration: none;
                       box-shadow: none;
                     `} 
-                    to={node.fields.slug}
+                    to={'/post' + node.fields.slug}
                   >
                     {title}
                   </Link>
