@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { css } from '@emotion/core'
 
-import Socials from '../components/socials'
+import Socials from './socials'
 import { mq } from '../styles/mq'
 
 export default () => {
@@ -24,13 +24,13 @@ export default () => {
             }
             ${mq({
               width: ['100%', 'auto'],
-              'text-align': ['center', 'inherit'],
-              'margin-bottom': ['10px', 0],
+              textAlign: ['center', 'inherit'],
+              marginBottom: ['10px', 0],
             })}
           `}
         >
-          <Link>Blog</Link>
-          <Link>About</Link>
+          <Link to="/">Blog</Link>
+          <Link to="/">About</Link>
         </div>
         <div
           css={css`

@@ -45,6 +45,7 @@ export default css`
   }
 
   blockquote {
+    margin: 15px -5px;
     line-height: 1.6;
     font-style: italic;
     border-color: #d0414e;

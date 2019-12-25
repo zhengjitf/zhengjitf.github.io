@@ -1,48 +1,103 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import { css } from '@emotion/core'
 
+import 'prismjs/themes/prism-okaidia.css'
+import { mq } from '../styles/mq'
 import Layout from "../components/layout"
+import HeaderWrapper from '../components/headerWrapper'
+import Tag from '../components/tag'
 import SEO from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
+import RecommendList from "../components/recommendList"
+import { rhythm } from "../utils/typography"
 
 class BlogPostTemplate extends React.Component {
   render() {
+    const allPost = this.props.data.allMarkdownRemark.edges.map(item => {
+      return item.node.frontmatter
+    })
     const post = this.props.data.markdownRemark
-    const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
+    const tags = post.frontmatter.tags || []
+
+    // 根据tag查找关联的博文
+    const relatedPosts = allPost.reduce((total, post) => {
+      const itemTags = post.tags
+      if (itemTags.length === 0) {
+        return total
+      }
+
+      const matchedTags = itemTags.filter($tag => tags.includes($tag))
+
+      if (matchedTags.length === 0) {
+        return total
+      }
+
+      return total.concat({
+        post: {
+          title: post.title,
+          description: post.description,
+          tag: itemTags,
+          date: post.date,
+        },
+        matchedTagsCount: matchedTags.length,
+      })
+    }, []).sort((a, b) => b.matchedTagsCount - a.matchedTagsCount);
+
+    const header = (
+      <HeaderWrapper withBack>
+        <div
+          css={css`
+            margin-top: 60px;
+            text-align: center;
+          `}
+        >
+          {
+            tags.map(tag => {
+              return (
+                <Tag key={tag} label={tag} />
+              )
+            })
+          }
+          <h1
+            css={css`
+              line-height: 1.33;
+              letter-spacing: -.6px;
+              margin: 30px 0 18px;
+              font-size: 42px;
+            `}>
+            { post.frontmatter.title }
+          </h1>
+          <div
+            css={css`
+              color: #a9afb3;
+              font-family: Montserrat,sans-serif;
+              font-weight: 200;
+              font-size: 15px;
+            `}>
+            { post.frontmatter.date }
+          </div>
+        </div>
+      </HeaderWrapper>
+    )
 
     return (
       <Layout 
-        location={this.props.location} 
-        title={siteTitle}
-        pageData={{
-          post,
-        }}
+        header={header}
       >
         <SEO
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <article className="post-container">
-          {/* <header>
-            <h1
-              style={{
-                marginTop: rhythm(1),
-                marginBottom: 0,
-              }}
-            >
-              {post.frontmatter.title}
-            </h1>
-            <p
-              style={{
-                ...scale(-1 / 5),
-                display: `block`,
-                marginBottom: rhythm(1),
-              }}
-            >
-              {post.frontmatter.date}
-            </p>
-          </header> */}
+        <article 
+          className="post-container"
+          css={css`
+            ${mq({
+              width: ['100%', '770px'],
+              margin: '0 auto',
+            })}
+          `}
+        >
           <section dangerouslySetInnerHTML={{ __html: post.html }} />
           <hr
             style={{
@@ -79,6 +134,10 @@ class BlogPostTemplate extends React.Component {
             </li>
           </ul>
         </nav>
+        
+        <RecommendList
+          list={relatedPosts.map(item => item.post).slice(0, 3)}
+        />
       </Layout>
     )
   }
@@ -101,7 +160,23 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
-        tag
+        tags
+      }
+    }
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      edges {
+        node {
+          excerpt
+          fields {
+            slug
+          }
+          frontmatter {
+            date(formatString: "MMMM DD, YYYY")
+            title
+            description
+            tags
+          }
+        }
       }
     }
   }
