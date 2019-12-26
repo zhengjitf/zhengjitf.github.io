@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql, withPrefix } from 'gatsby'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 
@@ -46,13 +46,13 @@ export default (props) => {
         href={social.github}
         target="_blank"
       >
-        <img style={{ width: 20, height: 20 }} src='/github.svg' alt=""/>
+        <img style={{ width: 20, height: 20 }} src={withPrefix('/github.svg')} alt=""/>
       </A>
       <A 
         href={social.codepen}
         target="_blank"
       >
-        <img style={{ width: 20, height: 20 }} src='/codepen.svg' alt=""/>
+        <img style={{ width: 20, height: 20 }} src={withPrefix('/codepen.svg')} alt=""/>
       </A>
     </div>
   )

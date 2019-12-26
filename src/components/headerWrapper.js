@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'gatsby'
+import { Link, withPrefix } from 'gatsby'
 import { css } from '@emotion/core'
 
 import { mq } from '../styles/mq'
@@ -40,7 +40,7 @@ export default (props) => {
       css={css`
         height: 300px;
         width: 100%;
-        background: url(/header-bg.png);
+        background: url(${withPrefix('/header-bg.png')});
         background-size: cover;
         color: #fff;
         padding-top: 40px;
@@ -85,7 +85,7 @@ export default (props) => {
                 ${hoverRippleCss({width: '200px', height: '200px'})};
               `}
               >
-              <img style={{ width: 25, height: 25 }} src="/arrow-left.svg" alt=""/>
+              <img style={{ width: 25, height: 25 }} src={withPrefix('/arrow-left.svg')} alt=""/>
               <span
                 css={css`
                   ${mq({
@@ -133,7 +133,7 @@ export default (props) => {
               onClick={() => setSearchModalVisible(true)}
             >
               <img 
-                src="/search-icon.png" 
+                src={withPrefix('/search-icon.png')}
                 alt=""
                 css={css`
                   position: absolute;
@@ -163,7 +163,7 @@ export default (props) => {
 
                 ${hoverRippleCss({width: '100%', height: '100%'})};
               `}>
-              <img style={{width: 20, height: 20}} src="/menu.svg" alt=""/>
+              <img style={{width: 20, height: 20}} src={withPrefix('/menu.svg')} alt=""/>
             </div> */}
           </div>
         </div>

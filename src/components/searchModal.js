@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import { useStaticQuery, graphql, Link, withPrefix } from 'gatsby'
 import { css } from '@emotion/core'
 
 import { mq } from '../styles/mq'
@@ -67,8 +67,6 @@ export default (props) => {
     }
   }, [visible])
 
-  console.log('-----', allPosts, matchedPosts)
-
   return (
     <div
       css={css`
@@ -131,7 +129,7 @@ export default (props) => {
               width: 35px;
               height: 35px;
             `}
-            src="/close.svg" 
+            src={withPrefix('/close.svg')}
             alt=""
             onClick={() => onVisibleChange(false)}
           />
@@ -149,7 +147,7 @@ export default (props) => {
               width: 40px;
               height: 40px;
             `}
-            src="/search-icon-black.png"
+            src={withPrefix('/search-icon-black.png')}
             alt=""/>
           <input 
             type="text"
