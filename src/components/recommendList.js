@@ -21,7 +21,7 @@ const RecommendItems = styled.ul`
 
 const RecommendItem = styled.li`
   flex: none;
-  padding: 40px;
+  padding: 30px;
 
   ${mq({
     width: ['100%', 'calc((100% - 60px) / 3)'],
@@ -49,7 +49,10 @@ export default (props) => {
                 {
                   item.tag.map($tag => <Tag key={$tag} label={$tag} link />)
                 }
-                <div>
+                <div
+                  style={{
+                    marginTop: 10,
+                  }}>
                   <Link
                     css={css`
                       ${postTitleCss};
