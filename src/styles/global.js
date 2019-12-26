@@ -30,14 +30,6 @@ export default css`
   .container {
     margin: auto;
     padding: 0 15px;
-
-    &:before, &:after {
-      content: '';
-      display: table;
-    }
-    &:after {
-      clear: both;
-    }
     
     ${mq({
       width: ['auto', '750px', '970px', '1170px'],

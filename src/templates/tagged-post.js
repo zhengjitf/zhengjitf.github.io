@@ -9,7 +9,6 @@ import Tag from '../components/tag'
 export default ({ pageContext, data, location }) => {
   const { tag } = pageContext
   const { edges, totalCount } = data.allMarkdownRemark
-  console.log('edges', edges)
 
   const posts = edges.map(({ node }) => {
     const {

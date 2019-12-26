@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'gatsby'
 import { css } from '@emotion/core'
 
 import { mq } from '../styles/mq'
+import SearchModal from './searchModal'
 
 const hoverRippleCss = ({ width, height }) => css`
   &:before, &:after {
@@ -32,6 +33,8 @@ const hoverRippleCss = ({ width, height }) => css`
 export default (props) => {
   const { withBack } = props
 
+  const [searchModalVisible, setSearchModalVisible] = useState(false)
+
   return (
     <div
       css={css`
@@ -44,7 +47,16 @@ export default (props) => {
         position: relative;
       `}
     >
-      <div className="container">
+      <SearchModal 
+        visible={searchModalVisible}
+        onVisibleChange={setSearchModalVisible}
+      />
+      <div 
+        className="container"
+        css={css`
+          overflow: hidden;
+        `}
+      >
         {
           withBack && (
             <Link
@@ -118,6 +130,7 @@ export default (props) => {
 
                 ${hoverRippleCss({width: '200px', height: '200px'})};
               `}
+              onClick={() => setSearchModalVisible(true)}
             >
               <img 
                 src="/search-icon.png" 
@@ -130,7 +143,7 @@ export default (props) => {
               />
               <span>Search blog</span>
             </div>
-            <div
+            {/* <div
               css={css`
                 position: relative;
                 overflow: hidden;
@@ -151,7 +164,7 @@ export default (props) => {
                 ${hoverRippleCss({width: '100%', height: '100%'})};
               `}>
               <img style={{width: 20, height: 20}} src="/menu.svg" alt=""/>
-            </div>
+            </div> */}
           </div>
         </div>
         { props.children }
