@@ -44,6 +44,7 @@ class BlogIndex extends React.Component {
               font-weight: 700;
               margin: 0;
               letter-spacing: -.5px;
+              text-align: center;
             `}>
             <Link to="/">{author}</Link>
           </h1>

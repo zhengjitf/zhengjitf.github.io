@@ -20,11 +20,11 @@ class Layout extends React.Component {
         </header>
         <div
           className="container"
-          css={css`
-            margin-top: 50px;
-            margin-bottom: 50px;
-            display: flex;
-          `}
+          style={{
+            paddingTop: 50,
+            paddingBottom: 50,
+            display: 'flex',
+          }}
         >
           {aside}
           <main

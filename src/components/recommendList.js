@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { Link } from 'gatsby'
 import { css } from '@emotion/core'
 
 import { mq } from '../styles/mq'
@@ -48,13 +49,16 @@ export default (props) => {
                 {
                   item.tag.map($tag => <Tag key={$tag} label={$tag} link />)
                 }
-                <h4
-                  css={css`
-                    ${postTitleCss};
-                    font-size: 23px;
-                    margin-bottom: 0;
-                  `}
-                >{item.title}</h4>
+                <div>
+                  <Link
+                    css={css`
+                      ${postTitleCss};
+                      font-size: 23px;
+                      margin-bottom: 0;
+                    `}
+                    to={item.path}
+                  >{item.title}</Link>
+                </div>
                 <div 
                   css={css`
                     color: #a9afb3;

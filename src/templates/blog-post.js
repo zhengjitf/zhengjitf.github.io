@@ -13,15 +13,16 @@ import { rhythm } from "../utils/typography"
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const allPost = this.props.data.allMarkdownRemark.edges.map(item => {
-      return item.node.frontmatter
+    const allNodes = this.props.data.allMarkdownRemark.edges.map(item => {
+      return item.node
     })
     const post = this.props.data.markdownRemark
     const { previous, next } = this.props.pageContext
     const tags = post.frontmatter.tags || []
 
     // 根据tag查找关联的博文
-    const relatedPosts = allPost.reduce((total, post) => {
+    const relatedPosts = allNodes.reduce((total, node) => {
+      const post = node.frontmatter
       const itemTags = post.tags
       if (itemTags.length === 0) {
         return total
@@ -39,6 +40,7 @@ class BlogPostTemplate extends React.Component {
           description: post.description,
           tag: itemTags,
           date: post.date,
+          path: '/post' + node.fields.slug,
         },
         matchedTagsCount: matchedTags.length,
       })

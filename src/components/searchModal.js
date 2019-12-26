@@ -157,7 +157,8 @@ export default (props) => {
               border: none;
               background: transparent;
               flex: 1;
-              height: 38px;
+              height: 40px;
+              line-height: 40px;
               font-size: 24px;
             `}
             onChange={(e) => {setKeyword(e.target.value)}}
