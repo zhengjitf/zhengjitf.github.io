@@ -51,10 +51,6 @@ export default () => {
   }, [])
   tags = Array.from(new Set(tags))
 
-  console.log('tags', tags)
-
-  console.log('allMarkdownRemark', allMarkdownRemark)
-
   return (
     <div>
       <div style={{}}>
@@ -71,18 +67,6 @@ export default () => {
           }
         </Ul>
       </div>
-      {/* <div style={{}}>
-        <H4>Courses</H4>
-        <Ul>
-          <Li></Li>
-        </Ul>
-      </div>
-      <div style={{}}>
-        <H4>Languages</H4>
-        <Ul>
-          <Li></Li>
-        </Ul>
-      </div> */}
     </div>
   )
 }

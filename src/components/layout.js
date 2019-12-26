@@ -24,6 +24,7 @@ class Layout extends React.Component {
             paddingTop: 50,
             paddingBottom: 50,
             display: 'flex',
+            minHeight: 'calc(100vh - 120px - 300px)',
           }}
         >
           {aside}
