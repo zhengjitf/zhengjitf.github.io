@@ -4,6 +4,10 @@ import { css } from '@emotion/core'
 
 import { mq } from '../styles/mq'
 
+const matchKeyword = (string, keyword) => {
+  return string.toLowerCase().indexOf(keyword.toLowerCase()) !== -1
+}
+
 export default (props) => {
   const { visible, onVisibleChange } = props
   const [keyword, setKeyword] = useState('')
@@ -45,17 +49,40 @@ export default (props) => {
       path: '/post' + node.fields.slug,
     }
   })
+
+  let matchedPosts = []
+  const trimKeyword = (keyword || '').trim()
+  console.log('trimKeyword', trimKeyword)
+  if (trimKeyword) {
+    const postsFilterByTitle = []
+    const postsFilterByDescription = []
+    const postsFilterByTag = []
   
-  const matchedPosts = allPosts.filter(post => {
-    const trimKeyword = (keyword || '').trim()
-    if (!trimKeyword) {
-      return false
+    for (const post of allPosts) {
+      if (matchKeyword(post.title, trimKeyword)) {
+        postsFilterByTitle.push(post)
+        break
+      }
+      if (matchKeyword(post.description, trimKeyword)) {
+        postsFilterByDescription.push(post)
+        break
+      }
+      if (post.tags.find(tag => matchKeyword(tag, trimKeyword))) {
+        postsFilterByTag.push(post)
+        break
+      }
     }
-    return post.title.toLowerCase().indexOf(trimKeyword.toLowerCase()) !== -1
-  })
+
+    matchedPosts = [
+      ...postsFilterByTitle,
+      ...postsFilterByDescription,
+      ...postsFilterByTag,
+    ]
+  }
+
+  console.log('matchedPosts', matchedPosts)
 
   useEffect(() => {
-    console.log('visible', visible)
     if (visible) {
       document.documentElement.style.overflow = 'hidden'
     } else {

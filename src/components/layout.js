@@ -7,7 +7,7 @@ import Footer from './footer'
 
 class Layout extends React.Component {
   render() {
-    const { children, header, aside } = this.props
+    const { children, header, aside, noFooter } = this.props
 
     return (
       <div
@@ -40,7 +40,7 @@ class Layout extends React.Component {
           </main>
         </div>
         <footer>
-          <Footer />
+          {noFooter || <Footer />}
         </footer>
       </div>
     )
