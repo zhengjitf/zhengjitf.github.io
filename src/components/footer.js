@@ -37,8 +37,8 @@ export default () => {
             })};
           `}
         >
-          <Link to="/">Blog</Link>
-          <Link to="/">About</Link>
+          {/* <Link to="/">Blog</Link>
+          <Link to="/">About</Link> */}
         </div>
         <div
           css={css`

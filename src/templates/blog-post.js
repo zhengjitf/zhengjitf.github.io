@@ -10,6 +10,7 @@ import Tag from '../components/tag'
 import SEO from "../components/seo"
 import RecommendList from "../components/recommendList"
 import { rhythm } from "../utils/typography"
+import postCss from '../styles/post'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -22,8 +23,14 @@ class BlogPostTemplate extends React.Component {
 
     // 根据tag查找关联的博文
     const relatedPosts = allNodes.reduce((total, node) => {
-      const post = node.frontmatter
-      const itemTags = post.tags
+      const $post = node.frontmatter
+      if ($post.title === post.frontmatter.title) {
+        return total
+      }
+      
+      const itemTags = $post.tags
+
+
       if (itemTags.length === 0) {
         return total
       }
@@ -36,10 +43,10 @@ class BlogPostTemplate extends React.Component {
 
       return total.concat({
         post: {
-          title: post.title,
-          description: post.description,
+          title: $post.title,
+          description: $post.description,
           tag: itemTags,
-          date: post.date,
+          date: $post.date,
           path: '/post' + node.fields.slug,
         },
         matchedTagsCount: matchedTags.length,
@@ -97,7 +104,8 @@ class BlogPostTemplate extends React.Component {
             ${mq({
               width: ['100%', '770px'],
               margin: '0 auto',
-            })}
+            })};
+            ${postCss};
           `}
         >
           <section dangerouslySetInnerHTML={{ __html: post.html }} />
@@ -137,9 +145,13 @@ class BlogPostTemplate extends React.Component {
           </ul>
         </nav>
         
-        <RecommendList
-          list={relatedPosts.map(item => item.post).slice(0, 3)}
-        />
+        {
+          relatedPosts.length > 0 && (
+            <RecommendList
+              list={relatedPosts.map(item => item.post).slice(0, 3)}
+            />
+          )
+        }
       </Layout>
     )
   }
