@@ -8,11 +8,25 @@ import Layout from "../components/layout"
 import HeaderWrapper from '../components/headerWrapper'
 import Tag from '../components/tag'
 import SEO from "../components/seo"
+import PostTOC from '../components/postTOC'
 import RecommendList from "../components/recommendList"
 import { rhythm } from "../utils/typography"
 import postCss from '../styles/post'
 
 class BlogPostTemplate extends React.Component {
+  constructor(props) {
+    super(props)
+    this.postTOCWrapperRef = React.createRef()
+  }
+
+  handlePostTOCFixedChange = (fixed, clientRect) => {
+    if (fixed) {
+      this.postTOCWrapperRef.current.style.width = `${clientRect.width}px`
+    } else {
+      this.postTOCWrapperRef.current.style.width = `auto`
+    }
+  }
+
   render() {
     const allNodes = this.props.data.allMarkdownRemark.edges.map(item => {
       return item.node
@@ -20,6 +34,20 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark
     const { previous, next } = this.props.pageContext
     const tags = post.frontmatter.tags || []
+    const headings = post.headings
+    
+    const formattedHeadings = headings.reduce(function fn(total, item) {
+      const copyItem = { ...item }
+      const last = total.slice(-1)[0]
+      if (last && copyItem.depth > last.depth) {
+        last.children = last.children || []
+        fn(last.children, copyItem)
+      } else {
+        total.push(copyItem)
+      }
+  
+      return total
+    }, [])
 
     // 根据tag查找关联的博文
     const relatedPosts = allNodes.reduce((total, node) => {
@@ -73,7 +101,9 @@ class BlogPostTemplate extends React.Component {
               line-height: 1.33;
               letter-spacing: -.6px;
               margin: 30px 0 18px;
-              font-size: 42px;
+              ${mq({
+                fontSize: ['32px', '42px'],
+              })};
             `}>
             { post.frontmatter.title }
           </h1>
@@ -102,20 +132,44 @@ class BlogPostTemplate extends React.Component {
           className="post-container"
           css={css`
             ${mq({
-              width: ['100%', '770px'],
-              margin: '0 auto',
+              width: ['100%', '1000px'],
             })};
             ${postCss};
+            max-width: 100%;
+            position: relative;
+            display: flex;
+            margin: 0 auto;
           `}
         >
-          <section dangerouslySetInnerHTML={{ __html: post.html }} />
-          <hr
-            style={{
-              marginBottom: rhythm(1),
-            }}
-          />
-          <footer>
-          </footer>
+          <div
+            css={css`
+              flex: 1;
+              overflow: hidden;
+              padding-left: 20px;
+            `}>
+            <section dangerouslySetInnerHTML={{ __html: post.html }} />
+            <hr
+              style={{
+                marginBottom: rhythm(1),
+              }}
+            />
+            <footer>
+            </footer>
+          </div>
+          <div
+            ref={this.postTOCWrapperRef}
+            css={css`
+              flex: none;
+              margin-left: 20px;
+              ${mq({
+                display: ['none', 'none', 'block'],
+              })};
+            `}>
+            <PostTOC
+              onFixedChange={this.handlePostTOCFixedChange}
+              headings={formattedHeadings}
+            />
+          </div>
         </article>
 
         <nav>
@@ -170,6 +224,10 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      headings {
+        depth
+        value
+      }
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")

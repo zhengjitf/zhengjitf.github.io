@@ -1,6 +1,7 @@
 import React from 'react'
 import { css } from '@emotion/core'
 
+import { mq } from '../styles/mq'
 import Layout from '../components/layout'
 import PostList from '../components/postList'
 import HeaderWrapper from '../components/headerWrapper'
@@ -41,7 +42,9 @@ export default ({ pageContext, data, location }) => {
             line-height: 1.33;
             letter-spacing: -.6px;
             margin: 30px 0 18px;
-            font-size: 42px;
+            ${mq({
+              fontSize: ['32px', '42px'],
+            })};
           `}>
           { tag }
         </h1>

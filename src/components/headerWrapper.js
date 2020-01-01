@@ -143,28 +143,6 @@ export default (props) => {
               />
               <span>Search blog</span>
             </div>
-            {/* <div
-              css={css`
-                position: relative;
-                overflow: hidden;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin-left: 10px;
-                width: 46px;
-                height: 46px;
-                border-radius: 50%;
-                background: rgba(37,51,62,.5);
-                border: 0;
-                -webkit-appearance: none;
-                outline: 0!important;
-                vertical-align: middle;
-                cursor: pointer;
-
-                ${hoverRippleCss({width: '100%', height: '100%'})};
-              `}>
-              <img style={{width: 20, height: 20}} src={withPrefix('/menu.svg')} alt=""/>
-            </div> */}
           </div>
         </div>
         { props.children }

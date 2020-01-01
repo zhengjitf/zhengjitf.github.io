@@ -36,6 +36,11 @@ export default css`
     })}
   }
 
+  ::selection {
+    color: #fff;
+    background-color: #d0414e
+  }
+
   blockquote {
     margin: 15px -5px;
     line-height: 1.6;
@@ -50,7 +55,6 @@ export default css`
       font-family: Lora,sans-serif;
       position: relative;
       text-decoration: none;
-      white-space: nowrap;
     }
   }
 `

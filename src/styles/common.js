@@ -1,4 +1,5 @@
 import { css } from '@emotion/core'
+import { mq } from './mq'
 
 export const tag = css`
   border-radius: 28px;
@@ -22,7 +23,9 @@ export const tag = css`
 `
 
 export const postTitle = css`
-  font-size: 42px;
+  ${mq({
+    fontSize: ['32px', '42px'],
+  })};
   line-height: 1.33;
   letter-spacing: -.5px;
   margin: 20px 0;

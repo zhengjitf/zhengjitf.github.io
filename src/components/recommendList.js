@@ -39,7 +39,7 @@ export default (props) => {
   return (
     <div className="recommend-list">
       <Title>
-        You might also like...
+        你可能也会喜欢...
       </Title>
       <RecommendItems>
         {
@@ -71,6 +71,29 @@ export default (props) => {
                   css={css`
                     margin-top: 10px;
                   `}>{item.description}</p>
+                <Link
+                  css={css`
+                    position: relative;
+                    color: #1464be;
+                    font-size: 0.8em;
+                    &:after {
+                      content: '';
+                      position: absolute;
+                      left: 0;
+                      background: #1464be;
+                      right: 0;
+                      bottom: -2px;
+                      height: 2px;
+                      transition: all .3s cubic-bezier(.7,0,.3,1);
+                    }
+                    &:hover:after {
+                      transform: scaleX(0);
+                    }
+                  `}
+                  to={item.path}
+                >
+                  阅读全文
+                </Link >
               </RecommendItem>
             )
           })

@@ -31,6 +31,7 @@ class Layout extends React.Component {
           <main
             css={css`
               flex: 1;
+              max-width: 100%;
               ${mq({
                 padding: ['0 10px', !!aside ? '0 50px' : '0 10px'],
               })};

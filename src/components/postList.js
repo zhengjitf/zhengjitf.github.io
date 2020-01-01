@@ -68,6 +68,29 @@ export default (props) => {
                 }}
               />
             </section>
+            <Link
+              css={css`
+                position: relative;
+                color: #1464be;
+                font-size: 0.8em;
+                &:after {
+                  content: '';
+                  position: absolute;
+                  left: 0;
+                  background: #1464be;
+                  right: 0;
+                  bottom: -2px;
+                  height: 2px;
+                  transition: all .3s cubic-bezier(.7,0,.3,1);
+                }
+                &:hover:after {
+                  transform: scaleX(0);
+                }
+              `}
+              to={post.path}
+            >
+              阅读全文
+            </Link >
           </article>
         )
       })}

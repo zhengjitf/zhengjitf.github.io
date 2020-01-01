@@ -40,7 +40,9 @@ class BlogIndex extends React.Component {
         >
           <h1
             css={css`
-              font-size: 42px;
+              ${mq({
+                fontSize: ['32px', '42px'],
+              })};
               font-weight: 700;
               margin: 0;
               letter-spacing: -.5px;
