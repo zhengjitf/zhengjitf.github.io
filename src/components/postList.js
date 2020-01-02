@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import {css} from '@emotion/core'
 
+import { mq } from '../styles/mq'
 import Tag from './tag'
 import { postTitle as postTitleCss } from '../styles/common'
 
@@ -27,20 +28,34 @@ export default (props) => {
               <div 
                 className="post-data"
                 css={css`
-                  display: flex;
+                  ${mq({
+                    display: ['block', 'flex'],
+                  })};
                   align-items: center;
                 `}
               >
-                {
-                  post.tags.map(tag => {
-                    return (
-                      <Tag key={tag} label={tag} link />
-                    )
-                  })
-                }
+                <div
+                  css={css`
+                    display: flex;
+                    flex-wrap: wrap;
+                    a {
+                      margin-top: 5px;
+                      margin-bottom: 5px;
+                    }
+                  `}>
+                  {
+                    post.tags.map(tag => {
+                      return (
+                        <Tag key={tag} label={tag} link />
+                      )
+                    })
+                  }
+                </div>
                 <span
                   css={css`
-                    margin-left: 20px;
+                    ${mq({
+                      marginLeft: [0, 20],
+                    })};
                     color: #a9afb3;
                     font-size: 16px;
                   `}

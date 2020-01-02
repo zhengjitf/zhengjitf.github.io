@@ -24,7 +24,7 @@ export const tag = css`
 
 export const postTitle = css`
   ${mq({
-    fontSize: ['32px', '42px'],
+    fontSize: ['24px', '26px'],
   })};
   line-height: 1.33;
   letter-spacing: -.5px;
