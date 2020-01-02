@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
-import debounce from 'lodash/debounce'
+import throttle from 'lodash/throttle'
+import classnames from 'classnames'
 
 import getPos from '../utils/getPos'
 
@@ -24,10 +25,13 @@ const Li = styled.li`
     border-radius: 50%;
     background: black;
   }
+  &.active > a {
+    color: #d0414e !important;
+  }
 `
 
 export default (props) => {
-  const { headings, onFixedChange } = props
+  const { headings, onFixedChange, activeItem } = props
 
   const rootRef = useRef(null)
   const innerRef = useRef(null)
@@ -38,9 +42,9 @@ export default (props) => {
     const { top: rootElOffsetTop } = getPos(rootEl)
     const clientRect = rootEl.getBoundingClientRect()
 
-    const onScroll = debounce(
+    const onScroll = throttle(
       (e) => {
-        const scrollY = e.currentTarget.pageYOffset
+        const scrollY = window.pageYOffset
         const hasFixedCls = innerEl.classList.contains('fixed')
         if (scrollY + 20 > rootElOffsetTop) {
           if (!hasFixedCls) {
@@ -56,15 +60,15 @@ export default (props) => {
           }
         }
       },
-      200
+      100
     )
 
-    const onResize = debounce(
+    const onResize = throttle(
       (e) => {
         const { left: rootElOffsetLeft } = getPos(rootEl)
         innerEl.style.left = rootElOffsetLeft + 'px'
       },
-      200
+      100
     )
 
     window.addEventListener('scroll', onScroll)
@@ -75,6 +79,8 @@ export default (props) => {
       window.removeEventListener('resize', onResize)
     }
   }, [onFixedChange])
+
+  console.log('activeTOCItem', activeItem, headings)
 
   return (
     <div ref={rootRef}>
@@ -96,9 +102,12 @@ export default (props) => {
         {
           headings.map(function fn(item) {
             return (
-              <Li key={item.value}>
+              <Li 
+                key={item.value} 
+                className={classnames({ 'active': activeItem && activeItem.value === item.value && activeItem.depth === item.depth })}
+              >
                 <a 
-                  href={`#${item.value.toLowerCase()}`}
+                  href={`#${item.value}`}
                   style={{ color: 'inherit' }}
                   css={css`
                     font-size: 0.8em;
