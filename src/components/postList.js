@@ -87,7 +87,6 @@ export default (props) => {
               css={css`
                 position: relative;
                 color: #1464be;
-                font-size: 0.8em;
                 &:after {
                   content: '';
                   position: absolute;

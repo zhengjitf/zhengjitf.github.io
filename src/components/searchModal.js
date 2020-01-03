@@ -44,11 +44,14 @@ export default (props) => {
     return {
       title,
       description,
+      excerpt: node.excerpt,
       date,
       tags,
       path: '/post' + node.fields.slug,
     }
   })
+
+  console.log('allPosts', allPosts)
 
   let matchedPosts = []
   const trimKeyword = (keyword || '').trim()
@@ -59,17 +62,18 @@ export default (props) => {
     const postsFilterByTag = []
   
     for (const post of allPosts) {
+      console.log('======')
       if (matchKeyword(post.title, trimKeyword)) {
         postsFilterByTitle.push(post)
-        break
+        continue
       }
       if (matchKeyword(post.description, trimKeyword)) {
         postsFilterByDescription.push(post)
-        break
+        continue
       }
       if (post.tags.find(tag => matchKeyword(tag, trimKeyword))) {
         postsFilterByTag.push(post)
-        break
+        continue
       }
     }
 
@@ -231,7 +235,7 @@ export default (props) => {
                       font-family: Lora,sans-serif;
                       font-size: 20px;
                     `}>
-                    { post.description }
+                    { post.excerpt || post.description }
                   </p>
                 </div>
               )

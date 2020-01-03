@@ -110,7 +110,7 @@ export default (props) => {
                   href={`#${item.value}`}
                   style={{ color: 'inherit' }}
                   css={css`
-                    font-size: 0.8em;
+                    font-size: 0.9em;
                   `}
                 >
                   {item.value}

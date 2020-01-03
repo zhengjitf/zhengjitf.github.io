@@ -4,7 +4,7 @@ import { mq } from './mq'
 export default css`
   body {
     font-family: Lora,sans-serif;
-    font-size: 20px;
+    font-size: 16px;
     color: #25333e;
   }
   img {
