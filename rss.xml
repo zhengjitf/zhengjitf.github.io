@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zhengjitf's blog]]></title><description><![CDATA[zhengjitf's blog]]></description><link>https://blog.zhengjitf.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 09 Jan 2020 13:42:23 GMT</lastBuildDate><item><title><![CDATA[Jest 系列之入门简介]]></title><description><![CDATA[Jest 是 Facebook 出品的一个测试框架，相比其他测试框架，Jest 内置了断言、Mock…]]></description><link>https://blog.zhengjitf.com/jest-summary/</link><guid isPermaLink="false">https://blog.zhengjitf.com/jest-summary/</guid><pubDate>Wed, 01 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Jest 是 Facebook 出品的一个测试框架，相比其他测试框架，Jest 内置了断言、Mock、快照、测试覆盖率等常用功能，实现了开箱即用&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zhengjitf's blog]]></title><description><![CDATA[zhengjitf's blog]]></description><link>https://blog.zhengjitf.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 09 Jan 2020 13:46:55 GMT</lastBuildDate><item><title><![CDATA[Jest 系列之入门简介]]></title><description><![CDATA[Jest 是 Facebook 出品的一个测试框架，相比其他测试框架，Jest 内置了断言、Mock…]]></description><link>https://blog.zhengjitf.com/jest-summary/</link><guid isPermaLink="false">https://blog.zhengjitf.com/jest-summary/</guid><pubDate>Wed, 01 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Jest 是 Facebook 出品的一个测试框架，相比其他测试框架，Jest 内置了断言、Mock、快照、测试覆盖率等常用功能，实现了开箱即用&lt;/p&gt;
 &lt;h2 id=&quot;环境配置&quot;&gt;&lt;a href=&quot;#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE&quot; aria-label=&quot;环境配置 permalink&quot; class=&quot;header-item&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;环境配置&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;安装依赖&lt;/li&gt;
@@ -192,7 +192,7 @@ module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/gatsby-blog/static/598d28ff9a9cd95f15742873767f423f/7cbef/coverage.png&quot;
+    href=&quot;/static/598d28ff9a9cd95f15742873767f423f/7cbef/coverage.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -205,12 +205,12 @@ module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;coverage&quot;
         title=&quot;coverage&quot;
-        src=&quot;/gatsby-blog/static/598d28ff9a9cd95f15742873767f423f/799d3/coverage.png&quot;
-        srcset=&quot;/gatsby-blog/static/598d28ff9a9cd95f15742873767f423f/00d96/coverage.png 148w,
-/gatsby-blog/static/598d28ff9a9cd95f15742873767f423f/0b23c/coverage.png 295w,
-/gatsby-blog/static/598d28ff9a9cd95f15742873767f423f/799d3/coverage.png 590w,
-/gatsby-blog/static/598d28ff9a9cd95f15742873767f423f/2a3d6/coverage.png 885w,
-/gatsby-blog/static/598d28ff9a9cd95f15742873767f423f/7cbef/coverage.png 1134w&quot;
+        src=&quot;/static/598d28ff9a9cd95f15742873767f423f/799d3/coverage.png&quot;
+        srcset=&quot;/static/598d28ff9a9cd95f15742873767f423f/00d96/coverage.png 148w,
+/static/598d28ff9a9cd95f15742873767f423f/0b23c/coverage.png 295w,
+/static/598d28ff9a9cd95f15742873767f423f/799d3/coverage.png 590w,
+/static/598d28ff9a9cd95f15742873767f423f/2a3d6/coverage.png 885w,
+/static/598d28ff9a9cd95f15742873767f423f/7cbef/coverage.png 1134w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         loading=&quot;lazy&quot;
       /&gt;
