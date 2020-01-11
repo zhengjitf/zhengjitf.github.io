@@ -90,5 +90,11 @@ module.exports = {
         trackingId: `UA-155985563-1`,
       },
     },
+    {
+      resolve: `gatsby-plugin-baidu-analytics`,
+      options: {
+        siteId: `171d4d5d921c77711b176ffb7f2762e4`,
+      },
+    },
   ],
 }

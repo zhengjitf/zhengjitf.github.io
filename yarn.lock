@@ -5551,6 +5551,11 @@ gatsby-page-utils@^0.0.35:
     lodash "^4.17.15"
     micromatch "^3.1.10"
 
+gatsby-plugin-baidu-analytics@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.npmjs.org/gatsby-plugin-baidu-analytics/-/gatsby-plugin-baidu-analytics-2.2.0.tgz#d8b4653d6f1ef9a2243ae0028b2ffdf592ee50e9"
+  integrity sha512-tY3BDTB7tF3gOPj61V25oiCwUT+7TclPwtG7wVa31abAMcMGXDaq54V2AMTa5Nux50zm/IIbvgsuygzul+FAyA==
+
 gatsby-plugin-emotion@^4.1.18:
   version "4.1.18"
   resolved "https://registry.npmjs.org/gatsby-plugin-emotion/-/gatsby-plugin-emotion-4.1.18.tgz#c68ca726332f9b41538290759118e5a16d04fbc1"
