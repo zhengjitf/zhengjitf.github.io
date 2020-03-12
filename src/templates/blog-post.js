@@ -150,6 +150,7 @@ const BlogPostTemplate = props => {
     <Layout header={header}>
       <SEO
         title={post.frontmatter.title}
+        keywords={tags.join(',')}
         description={post.frontmatter.description || post.excerpt}
       />
       <article

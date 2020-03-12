@@ -3,7 +3,8 @@ module.exports = {
   siteMetadata: {
     title: `zhengjitf's blog`,
     author: `zhengjitf`,
-    description: ``,
+    description: `zhengjitf's blog`,
+    keywords: `React,Jest,FrontEnd`,
     siteUrl: `https://blog.zhengjitf.com/`,
     social: {
       codepen: `http://codepen.io/zhengjitf`,
@@ -94,6 +95,7 @@ module.exports = {
       resolve: `gatsby-plugin-baidu-analytics`,
       options: {
         siteId: `171d4d5d921c77711b176ffb7f2762e4`,
+        head: false,
       },
     },
   ],

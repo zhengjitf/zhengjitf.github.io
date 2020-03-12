@@ -34,7 +34,7 @@ export default (props) => {
   )
 
   const social = site.siteMetadata.social
-  console.log('props.css', props)
+
   return (
     <div 
       css={css`
@@ -45,12 +45,14 @@ export default (props) => {
       <A 
         href={social.github}
         target="_blank"
+        rel="noreferrer noopener"
       >
         <img style={{ width: 20, height: 20 }} src={withPrefix('/github.svg')} alt=""/>
       </A>
       <A 
         href={social.codepen}
         target="_blank"
+        rel="noreferrer noopener"
       >
         <img style={{ width: 20, height: 20 }} src={withPrefix('/codepen.svg')} alt=""/>
       </A>
